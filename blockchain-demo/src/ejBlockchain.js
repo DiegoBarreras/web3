@@ -1,6 +1,4 @@
-const crypto = require('crypto');
-const { diff } = require('util');
-const { measureMemory } = require('vm');
+import SHA256 from "crypto-js/sha256.js";
 
 class Block {
     constructor(index, data, prevHash) {
@@ -14,10 +12,7 @@ class Block {
 
     hashCalc() {
         const nonHashedString = this.index + this.timestamp + JSON.stringify(this.data) + this.prevHash + this.nonce;
-        return crypto
-            .createHash('sha256')
-            .update(nonHashedString)
-            .digest('hex');
+        return SHA256(nonHashedString).toString();
     }
 
     mineBlock(difficulty) {
@@ -55,10 +50,25 @@ class Blockchain {
         newBlock.mineBlock(5);
 
         this.chain.push(newBlock);
+        console.log(blockchain);
     }
 }
 
-const blockchain = new Blockchain();
-blockchain.addBlock("el pepe");
+let blockchain = new Blockchain();
 
-console.log(blockchain);
+function restartBlockchain() {
+    blockchain = new Blockchain();
+    alert('Blockchain Restarted')
+    console.log(blockchain);
+}
+const restartBtn = document.getElementById("restartBtn");
+restartBtn.addEventListener("click", restartBlockchain)
+
+const data = document.getElementById("data");
+const addBtn = document.getElementById("addBtn");
+addBtn.addEventListener("click", () => {
+    const text = data.value;
+    blockchain.addBlock(text);
+});
+
+// console.log(blockchain);
