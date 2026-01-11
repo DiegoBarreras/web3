@@ -36,7 +36,10 @@ class Blockchain {
     }
 
     createGenesis() {
-        return new Block(0, 'Genesis Block', '');
+        blockContainer.innerHTML = "";
+        let genesisBlock = new Block(0, 'Genesis Block', '');
+        blockContainer.appendChild(createBlockElement(genesisBlock));
+        return genesisBlock;
     }
 
     lastBlock() {
@@ -50,8 +53,53 @@ class Blockchain {
         newBlock.mineBlock(5);
 
         this.chain.push(newBlock);
+        blockContainer.appendChild(createBlockElement(newBlock));
         console.log(blockchain);
     }
+}
+
+const blockContainer = document.getElementById("blockContainer");
+
+function createBlockElement(block) {
+    const blockDiv = document.createElement("div");
+    blockDiv.classList.add("block");
+
+    const header = document.createElement("div");
+    header.classList.add("block-header");
+
+    const index = document.createElement("span");
+    index.classList.add("block-index");
+    index.textContent = `Block #${block.index}, `;
+
+    const time = document.createElement("span");
+    time.textContent = new Date(block.timestamp).toLocaleString();
+
+    header.append(index, time);
+
+    const body = document.createElement("div");
+    body.classList.add("block-body");
+
+    body.innerHTML = `
+        <div class="field">
+            <strong>Hash: </strong>
+            <code>${block.hash}</code>
+        </div>
+        <div class="field">
+            <strong>Previous Hash: </strong>
+            <code>${block.prevHash || "---"}</code>
+        </div>
+        <div class="field">
+            <strong>Nonce: </strong>
+            <span>${block.nonce}</span>
+        </div>
+        <div class="field">
+            <strong>Data: </strong>
+            <pre>${block.data}</pre>
+        </div>
+    `;
+
+    blockDiv.append(header, body);
+    return blockDiv;
 }
 
 let blockchain = new Blockchain();
