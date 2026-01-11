@@ -4,11 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blockchain Visual Demo</title>
+    <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
-    <button id="restartBtn">Restart Blockchain</button>
-    <textarea id="data" placeholder="Insert data"></textarea>
-    <button id="addBtn">Add Block</button>
+    <header>
+      <h1>Blockchain JS Demo</h1>
+      <p>A simple Proof Of Work simulation</p>
+    </header>
+
+    <main class="app-container">
+      <section class="controls">
+          <textarea id="data" placeholder="Insert block data"></textarea>
+
+          <div class="buttons">
+            <button id="restartBtn">Restart Blockchain</button>
+            <button id="addBtn">Add Block</button>
+          </div>
+      </section>
+      
+      <section class="blockchain">
+        <h2>Blockchain</h2>
+        <div id="blockContainer" class="block-Container">
+
+        </div>
+      </section>
+    </main>
+
     <script type="module" src="./src/ejBlockchain.js"></script>
 </body>
 </html>
