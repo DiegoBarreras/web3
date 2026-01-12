@@ -119,4 +119,9 @@ addBtn.addEventListener("click", () => {
     blockchain.addBlock(text);
 });
 
-// console.log(blockchain);
+const difficultyInput = document.getElementById("difficulty");
+const changeDifficultyBtn = document.getElementById("changeDifficultyBtn");
+changeDifficultyBtn.addEventListener("click", () => {
+    let difficultyValue = difficultyInput.value;
+    alert(difficultyValue);
+});
