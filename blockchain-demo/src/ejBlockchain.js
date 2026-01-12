@@ -46,11 +46,12 @@ class Blockchain {
         return this.chain[this.chain.length - 1];
     }
     
-    addBlock(data) {
+    addBlock(data, difficulty) {
         const newBlock = new Block(this.chain.length,data,this.lastBlock().hash);
 
-        console.log('Mining a new block...')
-        newBlock.mineBlock(5);
+        alert(`Difficulty: ${difficulty} \nMining a new block...`);
+        // alert('Mining a new block...');
+        newBlock.mineBlock(difficulty);
 
         this.chain.push(newBlock);
         blockContainer.appendChild(createBlockElement(newBlock));
@@ -96,6 +97,7 @@ function createBlockElement(block) {
             <strong>Data: </strong>
             <pre>${block.data}</pre>
         </div>
+        <hr></hr>
     `;
 
     blockDiv.append(header, body);
@@ -116,12 +118,15 @@ const data = document.getElementById("data");
 const addBtn = document.getElementById("addBtn");
 addBtn.addEventListener("click", () => {
     const text = data.value;
-    blockchain.addBlock(text);
+    const miningDifficulty = difficulty;
+    blockchain.addBlock(text, miningDifficulty);
 });
+
+let difficulty = 0;
 
 const difficultyInput = document.getElementById("difficulty");
 const changeDifficultyBtn = document.getElementById("changeDifficultyBtn");
 changeDifficultyBtn.addEventListener("click", () => {
-    let difficultyValue = difficultyInput.value;
-    alert(difficultyValue);
+    difficulty = difficultyInput.value;
+    alert(`Difficulty set to: ${difficulty}`);
 });
