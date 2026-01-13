@@ -50,7 +50,6 @@ class Blockchain {
         const newBlock = new Block(this.chain.length,data,this.lastBlock().hash);
 
         alert(`Difficulty: ${difficulty} \nMining a new block...`);
-        // alert('Mining a new block...');
         newBlock.mineBlock(difficulty);
 
         this.chain.push(newBlock);

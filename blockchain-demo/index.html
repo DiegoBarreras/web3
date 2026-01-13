@@ -14,7 +14,7 @@
 
     <main class="app-container">
       <section class="controls">
-          <input id="difficulty" type="number" min="0" max="9" placeholder="Insert mining difficulty">
+          <input id="difficulty" type="number" min="0" max="9" oninput="if(this.value.length > 1) this.value = this.value.slice(0, 1);" placeholder="Insert mining difficulty">
 
           <div class="buttons">
             <button id="changeDifficultyBtn">Change Difficulty</button>
@@ -34,6 +34,7 @@
 
         </div>
       </section>
+
     </main>
 
     <script type="module" src="./src/ejBlockchain.js"></script>
