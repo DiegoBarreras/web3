@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Visual Demo</title>
+  <script type="module" crossorigin src="/web3/assets/index-Cj8sYeE5.js"></script>
+  <link rel="stylesheet" crossorigin href="/web3/assets/index-CoNZzMB6.css">
+</head>
+<body>
+    <header>
+      <h1>Blockchain JS Demo</h1>
+      <p>A simple Proof Of Work simulation</p>
+    </header>
+
+    <main class="app-container">
+      <section class="controls">
+          <input id="difficulty" type="number" min="0" max="9" oninput="if(this.value.length > 1) this.value = this.value.slice(0, 1);" placeholder="Insert mining difficulty">
+
+          <div class="buttons">
+            <button id="changeDifficultyBtn">Change Difficulty</button>
+          </div>
+
+          <textarea id="data" placeholder="Insert block data"></textarea>
+
+          <div class="buttons">
+            <button id="restartBtn">Restart Blockchain</button>
+            <button id="addBtn">Add Block</button>
+          </div>
+      </section>
+      
+      <section class="blockchain">
+        <h2>Blockchain</h2>
+        <div id="blockContainer" class="block-Container">
+
+        </div>
+      </section>
+
+    </main>
+
+</body>
+</html>
